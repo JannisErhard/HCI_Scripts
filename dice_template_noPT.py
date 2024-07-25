@@ -4,6 +4,7 @@ import numpy as np
 from pyscf import gto, scf, ao2mo
 from pyscf.shciscf import shci
 from pyscf.tools import molden, fcidump
+import pickle 
 
 
 NAME = 'output' + '_EPS'
@@ -12,6 +13,11 @@ CHARGE = atcharge
 MULT = spinmult
 BASIS = """basis_set1"""
 
+# basis read mod
+element = 'K'
+basis_type = 'aug-cc-pVQZ'
+with open(element+'_'+basis_type+'.pkl', 'rb') as f:
+    basis = pickle.load(f)
 
 def run_shci(atcoords, charge, mult, basis, fname, unit='B'):
     # Build PySCF molecule
@@ -20,6 +26,7 @@ def run_shci(atcoords, charge, mult, basis, fname, unit='B'):
     mol.charge = charge
     mol.spin = mult - 1
     mol.basis = basis
+
     mol.unit = unit
     mol.build()
 
@@ -56,7 +63,7 @@ def run_shci(atcoords, charge, mult, basis, fname, unit='B'):
     return (mch, norb, n_a, n_b)
 
 
-mc, norb, na, nb = run_shci(GEOM, CHARGE, MULT, BASIS, NAME, unit='B')
+mc, norb, na, nb = run_shci(GEOM, CHARGE, MULT, basis, NAME, unit='B')
 dm_ab = mc.fcisolver.make_rdm1s()  # in MOs
 dm2 = mc.fcisolver.make_rdm12(mc.ci, norb, (na,nb))[1]
 np.savez(f"{NAME}.ci.npz", energy=mc.e_tot, coeff=mc.ci, rdm1=dm_ab, rdm2=dm2)
