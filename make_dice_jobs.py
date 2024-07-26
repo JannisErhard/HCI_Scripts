@@ -24,7 +24,7 @@ N2spins.extend([1, 0, 1, 2, 3, 6, 5, 4, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0])
 
 
 # Set up parameters
-atoms = ['L']
+atoms = ['K']
 BASIS = 'aug-cc-pwCVQZ'
 epsilon = '5e-4'
 NTASKS = '20'
