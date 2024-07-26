@@ -5,6 +5,7 @@ from pyscf import gto, scf, ao2mo
 from pyscf.shciscf import shci
 from pyscf.tools import molden, fcidump
 import pickle 
+import apost3d as apost   # Laila's PySCF to fchk
 
 
 NAME = 'output' + '_EPS'
@@ -14,10 +15,11 @@ MULT = spinmult
 BASIS = """basis_set1"""
 
 # basis read mod
-element = 'K'
-basis_type = 'aug-cc-pVQZ'
+element = 'DUMMY'
+basis_type = 'aug-cc-pwCVQZ'
 with open(element+'_'+basis_type+'.pkl', 'rb') as f:
-    basis = pickle.load(f)
+    molpro_scrap = pickle.load(f)
+    basis = molpro_scrap['basis']
 
 def run_shci(atcoords, charge, mult, basis, fname, unit='B'):
     # Build PySCF molecule
@@ -36,7 +38,10 @@ def run_shci(atcoords, charge, mult, basis, fname, unit='B'):
     mf.scf()
 
     # Write MOLDEN and FCIDUMP
-    molden.from_scf(mf, f"{fname}.molden", ignore_h=False)
+    #molden.from_scf(mf, f"{fname}.molden", ignore_h=False)
+    # Write Gaussian and FCIDUMP
+    ovlp = mf.get_ovlp()
+    apost.write_fchk(mol, mf, fname, ovlp, basis_name='aug-cc-pwCVQZ')
     fcidump.from_scf(mf, f"{fname}.FCIDUMP", tol=0.0)
 
     # Number of orbital and electrons

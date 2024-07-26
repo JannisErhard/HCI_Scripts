@@ -1,7 +1,7 @@
 #!/usr/bin/env python 
 import os
-import pickle 
-from itertools import chain
+import pickle
+import sys
 
 PSE = [['H', 1],['He', 2],['Li', 3],['Be', 4],['B', 5],['C', 6],['N', 7],['O', 8],['F', 9],['Ne', 10],['Na', 11],['Mg', 12],['Al', 13],['Si', 14],['P', 15],['S', 16],['Cl', 17],['Ar', 18],['K', 19],['Ca', 20],['Sc', 21],['Ti', 22],['V', 23],['Cr', 24],['Mn', 25],['Fe', 26],['Co', 27],['Ni', 28],['Cu', 29],['Zn', 30],['Ga', 31],['Ge', 32],['As', 33],['Se', 34],['Br', 35],['Kr', 36]]
 # Atomic number to symbol and vice versa
@@ -23,9 +23,9 @@ with open('multiplicities.pkl', 'rb') as f:
 
 
 # Set up parameters
-atoms = ['K']
+atoms = [sys.argv[1]]
 #BASIS = 'aug-cc-pwCVQZ'
-BASIS = 'aug-cc-CVQZ'
+BASIS = 'aug-cc-pwCVQZ'
 epsilon = '5e-4'
 NTASKS = '20'
 NNODES = '1'
@@ -57,6 +57,7 @@ def make_jobs(mol, charge, spin=None, eps=None):
     
     fname = f'{z:04d}_q{charge:03d}_m{mul:02d}_k00_sp_hci_{basisname}'
     content = content.replace("output", fname)
+    content = content.replace("DUMMY", atoms[0])
     content = content.replace("GEOMETRY", geometry)
     content = content.replace("atcharge", str(charge))
     content = content.replace("spinmult", str(mul))
