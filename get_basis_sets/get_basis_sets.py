@@ -1,12 +1,17 @@
 # for more insights check 
 import pandas as pd
 import numpy as np
+import datetime
 import pickle
+import sys
 
-element = 'K'
-basis_type = 'aug-cc-pVQZ'
+element=sys.argv[1]
+basis_type = sys.argv[2]
 url = f"https://www.molpro.net/info/basis.php?search=1&element={element}&basis={basis_type}&print=1"
 dfs = pd.read_html(url)
+
+molpro_scrap = {}
+molpro_scrap['info'] = {'url':url, 'Element':element, 'Basis_Type':basis_type, 'Download_Time':datetime.datetime.now()}
 
 # parsing of df objects according to description
 contraction = 0
@@ -25,5 +30,7 @@ for l in range(0,len(dfs)):# each data field being one angular momentum
         for line in np.ndarray.tolist(dfs[l].values):
             basis[element].append([l , [line[0], 1.0]])
 
+molpro_scrap['basis'] = basis 
+
 with open(element+'_'+basis_type+'.pkl', 'wb') as f:
-    pickle.dump(basis, f)
+    pickle.dump(molpro_scrap, f)
