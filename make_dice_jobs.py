@@ -1,5 +1,6 @@
 #!/usr/bin/env python 
 import os
+import pickle 
 from itertools import chain
 
 PSE = [['H', 1],['He', 2],['Li', 3],['Be', 4],['B', 5],['C', 6],['N', 7],['O', 8],['F', 9],['Ne', 10],['Na', 11],['Mg', 12],['Al', 13],['Si', 14],['P', 15],['S', 16],['Cl', 17],['Ar', 18],['K', 19],['Ca', 20],['Sc', 21],['Ti', 22],['V', 23],['Cr', 24],['Mn', 25],['Fe', 26],['Co', 27],['Ni', 28],['Cu', 29],['Zn', 30],['Ga', 31],['Ge', 32],['As', 33],['Se', 34],['Br', 35],['Kr', 36]]
@@ -16,23 +17,21 @@ def find_charges(element):
     charges.append(-1)
     return charges 
 
-#isoelec. to:    H  He Li Be B  C  N  O  F  Ne Na Mg Al Si P  S  Cl Ar
-N2spins = [None, 1, 0, 1, 0, 1, 2, 3, 2, 1, 0, 1, 0, 1, 2, 3, 2, 1, 0]
-#isoelec. to:   K  Ca Sc Ti V  Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr
-N2spins.extend([1, 0, 1, 2, 3, 6, 5, 4, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0])
 
+with open('multiplicities.pkl', 'rb') as f:
+    multiplicities = pickle.load(f)
 
 
 # Set up parameters
-atoms = ['L']
-BASIS = 'aug-cc-pwCVQZ'
+atoms = ['K']
+#BASIS = 'aug-cc-pwCVQZ'
+BASIS = 'aug-cc-CVQZ'
 epsilon = '5e-4'
 NTASKS = '20'
 NNODES = '1'
 
 charges = find_charges(atoms[0])
 
-#charges = [0, 1, -1, 2, 3, 4]
 
 
 
@@ -40,9 +39,11 @@ def make_jobs(mol, charge, spin=None, eps=None):
     # System definition
     geometry = f'{mol}  0.0 0.0 0.0'
     z = symbol2atnum[mol]
+    print(multiplicities[z-1])
     if spin is None:
-        Nel = z - charge
-        spin = N2spins[Nel]
+        spin=multiplicities[z-1][charge+3]-1
+        
+        
     print(f"system {mol}, Q={charge}, s={spin}")
     if eps is None:
         eps = 1e-4
