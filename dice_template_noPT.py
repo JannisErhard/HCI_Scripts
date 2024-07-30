@@ -41,7 +41,7 @@ def run_shci(atcoords, charge, mult, basis, fname, unit='B'):
     #molden.from_scf(mf, f"{fname}.molden", ignore_h=False)
     # Write Gaussian and FCIDUMP
     ovlp = mf.get_ovlp()
-    apost.write_fchk(mol, mf, fname, ovlp, basis_name='aug-cc-pwCVQZ')
+    apost.write_fchk(mol, mf, fname, ovlp, basis_name=basis_type)
     fcidump.from_scf(mf, f"{fname}.FCIDUMP", tol=0.0)
 
     # Number of orbital and electrons

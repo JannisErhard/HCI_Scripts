@@ -24,8 +24,8 @@ with open('multiplicities.pkl', 'rb') as f:
 
 # Set up parameters
 atoms = [sys.argv[1]]
+BASIS = 'aug-cc-pVQZ'
 #BASIS = 'aug-cc-pwCVQZ'
-BASIS = 'aug-cc-pwCVQZ'
 epsilon = '5e-4'
 NTASKS = '20'
 NNODES = '1'
