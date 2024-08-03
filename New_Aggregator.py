@@ -95,11 +95,11 @@ def _load_fchk(n_atom, element, n_elec, multi, basis_name, data_path):
     tag = f"N{str(n_elec).zfill(2)}_M{multi}"
     method = f"uhf_{bname}_g09"
     # fchkpath = os.path.join(os.path.dirname(__file__), f"raw/{prefix}_{tag}_{method}.fchk")
-    fchkpath = os.path.join(data_path, f"gaussian/raw/{prefix}_{tag}_{method}.fchk")
+    fchkpath = os.path.join(data_path, f"hci/raw/{prefix}_{tag}_{method}.fchk")
     return load_one(fchkpath)
 
 def raw_filepath(suffix, n_atom, charge, mult, nexc, basis, dataset, data_path):
-    G1G2 = [1, 2, 3, 4, 11, 12]  # Group 1 and 2 elements
+    G1G2 = [1, 2, 3, 4, 11, 12, 19, 20]  # Group 1 and 2 elements
     elem = f"{n_atom:04d}"
     charge = f"q{charge:03d}"
     mult = f"m{mult:02d}"
