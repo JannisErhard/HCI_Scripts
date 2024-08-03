@@ -78,7 +78,10 @@ def raw_filepath(suffix, n_atom, charge, mult, nexc, basis, dataset, data_path):
     tag = f"{elem}_{charge}_{mult}_{nexc}"
     method = f"sp_hci_{bname}_5e-4"
     rawpath = os.path.join(data_path, f"{dataset}/raw/{tag}_{method}{suffix}")
-    return load_one(rawpath)
+    if suffix == '.fchk':
+        return load_one(rawpath)
+    else: 
+        return rawpath
 
 
 def run(elem, charge, mult, nexc, dataset, datapath):
@@ -108,7 +111,7 @@ def run(elem, charge, mult, nexc, dataset, datapath):
         mo_coeff = scfdata.mo.coeffs
     # Load restricted Hartree-Fock SCF instead from fchk
     if True:
-        data = raw_filepath(".fchk",atnum, elem, nelec, mult, obasis_name, datapath)
+        data = raw_filepath(".fchk",  atnum, charge, mult, nexc, BASIS, dataset, datapath)
         norba = data.mo.norba # yes
         mo_e_up = data.mo.energies[:norba] # yes
         mo_e_dn = data.mo.energies[norba:] # yes
