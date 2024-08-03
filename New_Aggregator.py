@@ -110,7 +110,7 @@ def run(elem, charge, mult, nexc, dataset, datapath):
         occs_dn = None
         mo_coeff = scfdata.mo.coeffs
     # Load restricted Hartree-Fock SCF instead from fchk
-    if True:
+    if False:
         data = raw_filepath(".fchk",  atnum, charge, mult, nexc, BASIS, dataset, datapath)
         norba = data.mo.norba # yes
         mo_e_up = data.mo.energies[:norba] # yes
@@ -118,6 +118,14 @@ def run(elem, charge, mult, nexc, dataset, datapath):
         occs_up = data.mo.occs[:norba] # yes
         occs_dn = data.mo.occs[norba:] # ?
         mo_coeff = data.mo.coeffs  # thats different now, ndarray(nbasis, norba + norbb)
+    if True:
+        scfdata = raw_filepath(".fchk",  atnum, charge, mult, nexc, BASIS, dataset, datapath)
+        norba =    scfdata.mo.norba # yes
+        mo_e_up =  scfdata.mo.energies[:norba] # yes
+        mo_e_dn =  scfdata.mo.energies[norba:] # yes
+        occs_up =  scfdata.mo.occs[:norba] # yes
+        occs_dn =  scfdata.mo.occs[norba:] # ?
+        mo_coeff = scfdata.mo.coeffs  # thats different now, ndarray(nbasis, norba + norbb)
     
 
 
@@ -139,6 +147,8 @@ def run(elem, charge, mult, nexc, dataset, datapath):
     # Evaluate properties on the grid:
     # --------------------------------
     # total and spin-up orbital, and spin-down orbital densities
+    print(from_iodata(scfdata))
+
     obasis = from_iodata(scfdata)
     orb_eval = evaluate_basis(obasis, atgrid.points, transform=mo_coeff.T)
     orb_dens_up = eval_orbs_density(dm1_up, orb_eval)
