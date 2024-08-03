@@ -64,40 +64,6 @@ DEGREE = 21  #  Lebedev grid degrees
 
 BASIS = "aug-ccpwCVQZ"
 
-def _load_fchk(n_atom, element, n_elec, multi, basis_name, data_path):
-    r"""Load Gaussian fchk file and return the iodata object
-
-    This function finds the fchk file in the data directory corresponding to the given parameters,
-    loads it and returns the iodata object.
-
-    Parameters
-    ----------
-    n_atom : int
-        Atomic number
-    element : str
-        Chemical symbol of the species
-    n_elec : int
-        Number of electrons
-    multi : int
-        Multiplicity
-    basis_name : str
-        Basis set name
-    data_path : str
-        Path to the data directory
-
-    Returns
-    -------
-    iodata : iodata.IOData
-        Iodata object containing the data from the fchk file
-    """
-    bname = basis_name.lower().replace("-", "").replace("*", "p").replace("+", "d")
-    prefix = f"atom_{str(n_atom).zfill(3)}_{element}"
-    tag = f"N{str(n_elec).zfill(2)}_M{multi}"
-    method = f"uhf_{bname}_g09"
-    # fchkpath = os.path.join(os.path.dirname(__file__), f"raw/{prefix}_{tag}_{method}.fchk")
-    fchkpath = os.path.join(data_path, f"hci/raw/{prefix}_{tag}_{method}.fchk")
-    return load_one(fchkpath)
-
 def raw_filepath(suffix, n_atom, charge, mult, nexc, basis, dataset, data_path):
     G1G2 = [1, 2, 3, 4, 11, 12, 19, 20]  # Group 1 and 2 elements
     elem = f"{n_atom:04d}"
@@ -112,7 +78,7 @@ def raw_filepath(suffix, n_atom, charge, mult, nexc, basis, dataset, data_path):
     tag = f"{elem}_{charge}_{mult}_{nexc}"
     method = f"sp_hci_{bname}_5e-4"
     rawpath = os.path.join(data_path, f"{dataset}/raw/{tag}_{method}{suffix}")
-    return rawpath
+    return load_one(rawpath)
 
 
 def run(elem, charge, mult, nexc, dataset, datapath):
@@ -142,7 +108,7 @@ def run(elem, charge, mult, nexc, dataset, datapath):
         mo_coeff = scfdata.mo.coeffs
     # Load restricted Hartree-Fock SCF instead from fchk
     if True:
-        data = _load_fchk(atnum, elem, nelec, mult, obasis_name, datapath)
+        data = raw_filepath(".fchk",atnum, elem, nelec, mult, obasis_name, datapath)
         norba = data.mo.norba # yes
         mo_e_up = data.mo.energies[:norba] # yes
         mo_e_dn = data.mo.energies[norba:] # yes
