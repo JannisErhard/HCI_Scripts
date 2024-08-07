@@ -110,14 +110,6 @@ def run(elem, charge, mult, nexc, dataset, datapath):
         occs_dn = None
         mo_coeff = scfdata.mo.coeffs
     # Load restricted Hartree-Fock SCF instead from fchk
-    if False:
-        data = raw_filepath(".fchk",  atnum, charge, mult, nexc, BASIS, dataset, datapath)
-        norba = data.mo.norba # yes
-        mo_e_up = data.mo.energies[:norba] # yes
-        mo_e_dn = data.mo.energies[norba:] # yes
-        occs_up = data.mo.occs[:norba] # yes
-        occs_dn = data.mo.occs[norba:] # ?
-        mo_coeff = data.mo.coeffs  # thats different now, ndarray(nbasis, norba + norbb)
     if True:
         scfdata = raw_filepath(".fchk",  atnum, charge, mult, nexc, BASIS, dataset, datapath)
         norba =    scfdata.mo.norba # yes
