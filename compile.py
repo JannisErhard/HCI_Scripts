@@ -5,7 +5,7 @@ import atomdb
 from atomdb.utils import MULTIPLICITIES
 from atomdb.periodic import element_symbol
 from atomdb import element_number
-import aux_file
+#import aux_file
 import numpy as np
 from glob import glob
 
@@ -28,13 +28,10 @@ def wrap_compile(atnums, charges):
         atname = element_symbol(atnum)
         for charge in charges:
             mult = MULTIPLICITIES[(atnum, charge)]
-            #atomdb.datasets.hci.run(atnum, charge, mult,0,'hci',datapath=MYDATAPATH)
-            aux_file.run(atnum, charge, mult,0,'hci',datapath=MYDATAPATH)
+            #aux_file.run(atnum, charge, mult,0,'hci',datapath=MYDATAPATH)
             try:
-                #print(f'Compiling {atname}, atnumber {atnum}, charge {charge}, mult {mult}')
-                atomdb.datasets.hci.run(atnum, charge, mult,0,'hci',datapath=MYDATAPATH)
-                  # compile just wraps run
-                  #atomdb.compile(atnum, charge, mult, 0, 'hci', datapath=MYDATAPATH)
+                print(f'Compiling {atname}, atnumber {atnum}, charge {charge}, mult {mult}')
+                atomdb.compile(atnum, charge, mult, 0, 'hci', datapath=MYDATAPATH)
                 sucess.append((atnum, charge, mult))
             except:
                 failed.append((atnum, charge, mult))
@@ -52,9 +49,8 @@ def wrap_compile(atnums, charges):
 # Compile atoms HCI dataset up to Ar (neutral atoms and ions)
 #------------------------------------------------------------
 
-fpath = f'*/*.fchk' # regex describing where all the fchk files will be
+fpath = f'hci/raw/*.npz' # regex describing where all the fchk files will be
 dbfiles = glob(fpath) # regex interpreter that will find all files that corespond to the previously defined pattern
-
 
 
 atoms = [f.split('/')[-1].split('_')[0] for f in dbfiles]
@@ -65,6 +61,6 @@ atnums = [int(atom) for atom in atoms]
 # atnums = list(set(atnums))
 
 for atnum in atnums:
-    charges = list(range(-1, atnum))
+    charges = list(range(-1, atnum-1))
     print(charges)
     wrap_compile(atnum, charges)
