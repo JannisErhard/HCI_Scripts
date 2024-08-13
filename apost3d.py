@@ -3,7 +3,7 @@
 #####################
 from pyscf import gto, scf, tools, fci,dft,cc
 import numpy
-def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=None):
+def write_fchk(mol, mf, titol,matriu_overlap,unrest=None,myhf=None):
 
     if myhf is None:
      mo_coeff=mf.mo_coeff
@@ -232,15 +232,15 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
 
     nameHandle.write('Automatically generated file for job '+titol + '\n')
     if cas==1:
-      nameHandle.write('SP        CASSCF '   + basis_name+ '\n')
+      nameHandle.write('SP        CASSCF '   + mol.basis+ '\n')
     elif unrest==1:
-      nameHandle.write('SP        Unrestricted'+ basis_name+ '\n')
+      nameHandle.write('SP        Unrestricted'+ mol.basis+ '\n')
     elif rohf==1 :
-      nameHandle.write('SP        RO calculation  '   + basis_name+ '\n')
+      nameHandle.write('SP        RO calculation  '   + mol.basis+ '\n')
     elif ccsd==1 :
-      nameHandle.write('SP        CCSD   '   + basis_name+ '\n')
+      nameHandle.write('SP        CCSD   '   + mol.basis+ '\n')
     else:
-      nameHandle.write('SP        Restricted  '   + basis_name+ '\n')
+      nameHandle.write('SP        Restricted  '   + mol.basis+ '\n')
 
     print('Number of atoms'.ljust(43)+'I     ',"%11i"% (natoms),file=nameHandle)
 
@@ -411,7 +411,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
        print('Wrong number of items')
        return
       nums=["{:16.8E}".format(i) for i in (val)]
-      print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+      print('\n'.join('  '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
 
     if unrest:
       val=[]
