@@ -236,7 +236,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
     elif unrest==1:
       nameHandle.write('SP        Unrestricted'+ basis_name+ '\n')
     elif rohf==1 :
-      nameHandle.write('SP        RO calculation  '   + basis_name+ '\n')
+      nameHandle.write('SP        RO_calculation  '   + basis_name+ '\n')
     elif ccsd==1 :
       nameHandle.write('SP        CCSD   '   + basis_name+ '\n')
     else:
@@ -258,16 +258,16 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
 
     print('Atomic numbers'.ljust(43)+'I   N=',"%11i"%(natoms),file=nameHandle)
     nums=["{:12.0f}".format(i) for i in llista_sym_atom]
-    print('\n'.join(''.join(nums[i:i+6]) for i in range(0, len(nums), 6)),file=nameHandle)
+    print('\n'.join(' '.join(nums[i:i+6]) for i in range(0, len(nums), 6)),file=nameHandle)
 
     print('Nuclear charges'.ljust(43)+'R   N=',"%11i"%(natoms),file=nameHandle)
     nums=["{:16.8E}".format(i) for i in llista_num_atom]
-    print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
+    print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
 
     print('Current cartesian coordinates'.ljust(43)+'R   N=',"%11i"%(3*natoms),file=nameHandle)
     coords=mol.atom_coords().ravel()
     nums=["{:16.8E}".format(i) for i in coords]
-    print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
+    print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
 
 # irrelevant stuff
     nameHandle.write('Force Field' + '\n')
@@ -301,7 +301,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
 
     print('Shell types'.ljust(43)+'I   N=',"%11i"%(num_ctr_shells),file=nameHandle)
     nums=["{:12.0f}".format(i) for i in angular_momentum]
-    print('\n'.join(''.join(nums[i:i+6]) for i in range(0, len(nums), 6)),file=nameHandle)
+    print('\n'.join(' '.join(nums[i:i+6]) for i in range(0, len(nums), 6)),file=nameHandle)
 
     val=[]
     for j in range(0,mol.nbas):
@@ -309,7 +309,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
             val.append(mol._bas[j][2])
     print('Number of primitives per shell'.ljust(43)+'I   N=',"%11i"%(num_ctr_shells),file=nameHandle)
     nums=["{:12.0f}".format(i) for i in val]
-    print('\n'.join(''.join(nums[i:i+6]) for i in range(0, len(nums), 6)),file=nameHandle)
+    print('\n'.join(' '.join(nums[i:i+6]) for i in range(0, len(nums), 6)),file=nameHandle)
 
     val=[]
     for j in range(0,mol.nbas):
@@ -317,7 +317,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
             val.append(mol._bas[j][0]+1)
     print('Shell to atom map'.ljust(43)+'I   N=',"%11i"%(num_ctr_shells),file=nameHandle)
     nums=["{:12.0f}".format(i) for i in val]
-    print('\n'.join(''.join(nums[i:i+6]) for i in range(0, len(nums), 6)),file=nameHandle)
+    print('\n'.join(' '.join(nums[i:i+6]) for i in range(0, len(nums), 6)),file=nameHandle)
     
     val=[]
     for j in range(0,mol.nbas):
@@ -326,7 +326,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
        val.append(i)
     print('Primitive exponents'.ljust(43)+'R   N=',"%11i"%(num_ctr_primitives),file=nameHandle)
     nums=["{:16.8E}".format(i) for i in (val)]
-    print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+    print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
 
     val=[]
     for j in range(0,mol.nbas):
@@ -335,7 +335,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
        val.append(i[x])
     print('Contraction coefficients'.ljust(43)+'R   N=',"%11i"%(num_ctr_primitives),file=nameHandle)
     nums=["{:16.8E}".format(i) for i in (val)]
-    print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+    print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
 
     val=[]
     for j in range(0,mol.nbas):
@@ -344,7 +344,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
        val.append(i)
     print('Coordinates of each shell'.ljust(43)+'R   N=',"%11i"%(num_coord_shells),file=nameHandle)
     nums=["{:16.8E}".format(i) for i in (val)]
-    print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+    print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
 
 # some irrelevant stuff
 #    print('Constraint Structure'.ljust(43)+'R   N=',"%11i"%(3*natoms),file=nameHandle)
@@ -370,7 +370,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
 # to be fixed
     print('External E-field'.ljust(43)+'R   N=',"%11i"%(35),file=nameHandle)
     nums=["{:16.8E}".format(0) for i in range(35)]
-    print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+    print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
 
     print('IOpCl'.ljust(43)+'I     ',"%11i"% (0),file=nameHandle)
     print('IROHF'.ljust(43)+'I     ',"%11i"% (rohf),file=nameHandle)
@@ -394,12 +394,12 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
          val=mf.mo_energy
     print('Alpha Orbital Energies'.ljust(43)+'R   N=',"%11i"%(indep_bf),file=nameHandle)
     nums=["{:16.8E}".format(val[i]) for i in range(indep_bf)]
-    print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
+    print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
 
     if unrest: 
       print('Beta Orbital Energies'.ljust(43)+'R   N=',"%11i"%(indep_bf),file=nameHandle)
       nums=["{:16.8E}".format(i) for i in mf.mo_energy[1]]
-      print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
+      print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle)
 
     if cas == 1 or fullci== 1 or unrest == 0:
       val=[]
@@ -425,10 +425,10 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
        return
       print('Alpha MO coefficients'.ljust(43)+'R   N=',"%11i"%(basis_func*indep_bf),file=nameHandle)
       nums=["{:16.8E}".format(i) for i in (val)]
-      print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+      print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
       print('Beta MO coefficients'.ljust(43)+'R   N=',"%11i"%(basis_func*indep_bf),file=nameHandle)
       nums=["{:16.8E}".format(i) for i in (valb)]
-      print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+      print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
      
 # Total SCF density 
     n2=int(indep_bf*(indep_bf+1)/2)
@@ -443,7 +443,7 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
         return
        print('Total SCF Density'.ljust(43)+'R   N=',"%11i"%(n2),file=nameHandle)
        nums=["{:16.8E}".format(i) for i in (val)]
-       print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+       print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
 #   aaa=dm[numpy.triu_indices(dm.shape[0])]
     else:
        val=[]
@@ -458,10 +458,10 @@ def write_fchk(mol, mf, titol,matriu_overlap,basis_name=None ,unrest=None,myhf=N
         return
        print('Total SCF Density'.ljust(43)+'R   N=',"%11i"%(n2),file=nameHandle)
        nums=["{:16.8E}".format(val[i]+valb[i]) for i in range(n2)]
-       print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+       print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
        print('Spin SCF Density'.ljust(43)+'R   N=',"%11i"%(n2),file=nameHandle)
        nums=["{:16.8E}".format(val[i]-valb[i]) for i in range(n2)]
-       print('\n'.join(''.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
+       print('\n'.join(' '.join(nums[i:i+5]) for i in range(0, len(nums), 5)),file=nameHandle) 
 
 ##
 ## Additional infor for APOST3D
