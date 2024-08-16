@@ -6,6 +6,9 @@ do
   if [ $1 == 1 ]
   then
     sh ~/HCI_Scripts/cluster_bash_tools/update_time.sh
+  elif [ $1 == 2 ]
+  then
+    sh ~/HCI_Scripts/cluster_bash_tools/second_update_time.sh
   elif [ $1 == 3 ]
   then
     sh ~/HCI_Scripts/cluster_bash_tools/third_update_time.sh
