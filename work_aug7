@@ -1,0 +1,155 @@
+- get databank progress
+(x,x) -> check calculations to assert current status 
+(x) -> if crashed try to rerun by usng less nodes and more memory 
+
+ All of them converged, but: 
+ Sc_-1_2 -> OOM -> more memory -> half number of procs, twice memory per proc (this also shows that it is a per proc memory problem), also give more time (6 instead of 3 hours) [ x ]
+ Sc_20_1 -> one electron doesnt work
+ Sc_4_1 -> >Time Out -> more Time [ x ]
+ 
+ -> see why compile script doesnt work as intended 
+ 	-> i did not have fchk data 
+ 		-> generated fchk data needs weird rename, why ? maybe ask Leila ? 
+
+Sc is 
+ 		
+ -> as soon as compile script works, upload the .msg data
+ 
+- get dice progress
+- check out the 2 websites gabi gave you 
+
+- get theory progress 
+- read pauls notes 
+
+making new jobs 
+-> just change the number of processors and the memory in the make_dice_jobs script to 10 and 16 
+
+
+! find out how much memory there actually is 
+
+
+Ti:
+Ti_9_1 -> ran out of time -> restart with 6 hours -> [x]
+Ti_2_2 -> OOM -> change to 5, 32: 2 changes in dice_run.sh, one change in run_dice.py  -> OOT -> increase to 6 hrs -> OOT -> increased to 12 hrs -> OOT -> increaased to 24 hrs [x]
+Ti_-1_3 -> OOM -> same -> OOM again -> increase mem per proc to 50	-> Timeout -> increase time to 6 hrs -> OOT -> increased time to 12 hrs -> OOT -> increased to 24 hrs -> FAILED (!) most likely one of the porcesses did not get enough memmory -> changed to 2/125 +48 hours -> never starts -> 24hrs + 2 nodes @ 125G each -> [x]
+Ti_4_0 -> OOM -> same -> OOT -> increase to 6 hrs [x]
+
+
+V:
+ V_-1_6 -> OOM -> update mem -> OOM -> increase to 32 -> OOM -> increase to 50 -> OOM -> 2/125, increase time to 24 hrs -> Failed mismatch between mpirun in dice_run.py and --ntasks-per-node=2  in dice_run.sh -> fix mismatch -> Timeout -> increased to 48 hours -> OOM ->  24hrs + 2 nodes @ 125G each -> [x]
+V_0_3 -> OOT -> 6 hrs -> OOM -> 5/32 -> [x]
+V_1_4 -> OOM -> upadte MEM -> OOT -> increase time [x]  
+V_2_3 -> OOT -> 6 hrs -> OOT [x]
+V_5_0 -> OOM -> update MEM -> OOT -> increased time [x]
+
+Starting Cr
+-> just change the number of processors and the memory in the make_dice_jobs script to 10 and 16 
+-> started them all
+
+Cr 0 6 -> OOM -> 5/32 -> OOM -> 5/50GB -> OOT -> increase to 12 hrs [x]
+Cr -1 5 -> OOM -> 5/32 -> OOT -> increase to 6 hrs -> OOM -> increased to 50 GB -> OOT -> 24 hrs -> OOT -> 48 hrs -> nothing -> 24hrs + 2 nodes @ 125G each -> OOT  -> increased time to 48hrs
+Cr 3 3 -> OOM -> 5/32 -> OOT -> increase to 6 hrs [x]
+Cr 4 2 -> OOT -> 6hrs [x]
+Cr 6 0 -> OOM -> 5/32 -> OOT -> increase to 6 hrs -> OOT -> increase to 12 hrs -> [x]
+Cr 9 3 -> OOT -> 6hrs [x]
+
+
+Starting Fe
+-> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
+-> started them all
+
+Fe 0 4 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> 12 hrs -> Fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram
+Fe 10 2 State: FAILED (exit code 1) -> restart -> [x]
+Fe 11 3 State: OUT_OF_MEMORY (exit code 0)  ->  5/32 -> OOT -> increased to 6 hrs [x]
+Fe -1 3 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> increased to 48 hrs -> fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram
+Fe 16 0 State: TIMEOUT (exit code 0) -> increased to 6hrs [x]
+Fe 2 4 State: FAILED (exit code 1) -> restart
+Fe 25 1 State: FAILED (exit code 1)
+Fe 3 5 State: TIMEOUT (exit code 0) -> increased to 6 hrs [x]
+Fe 8 0 State: OUT_OF_MEMORY (exit code 0)  ->  5/32 -> OOT -> increased to 6hrs  [x]
+
+
+
+I forgot about Mn ...
+
+Starting Mn
+-> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
+-> started them all
+
+Mn 0 5 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 5/50GB + 12hrs -> OOT -> 24hrs + 2 nodes @ 125G each -> OOT -> increase to 48 hrs 
+Mn 10 3 State: OUT_OF_MEMORY (exit code 0)->  5/32 [x]
+Mn 13 0 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOT -> increased to 12 hrs [x]
+Mn -1 4 State: OUT_OF_MEMORY (exit code 0)->  5/32 -> OOM -> increased to 50GB -> OOT -> increase to 12 hrs -> OOT 24hrs + 2 nodes @ 125G each -> OOM -> incrase to 4 nodes
+Mn 1 6 State: OUT_OF_MEMORY (exit code 0)->  5/32 -> OOT -> increased to 6 hrs [x]
+Mn 17 2 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOT -> increased to 12 hrs -> OOT -> increase to 24 hrs -> OOT -> increased to 48 hrs -> 
+Mn 24 1 State: FAILED (exit code 1) 
+Mn 7 0 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increased 5/32 -> OOT -> increase to 12 hrs  -> Failed -> OOT -> 25 hrs -> 
+Mn 9 2 State: TIMEOUT (exit code 0) -> increased to 6 hrs [x]
+
+Starting Co
+-> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
+-> started them all
+
+Co 0 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> OOM -> increased to 50 GB -> OOT 
+Co -1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT
+Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT 
+Co 12 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM 
+Co 16 1 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> [x]
+Co 18 1 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> [x]
+Co 2 3 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs and more memory -> OOT
+Co 25 0 State: FAILED (exit code 1)
+Co 26 1 State: FAILED (exit code 1)
+Co 6 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increase memeory   -> OOT
+Co 7 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> [x]
+Co 9 0 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increase runtime to 6hrs -> OOT
+
+Starting Ni 
+-> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
+-> started them all
+
+Ni 0 2 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs  -> OOT -> increased time to 12 hrs  
+Ni 10 0 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> [x]
+Ni -1 1 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> [x]
+Ni 1 1 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> OOT -increased time to 12 hrs
+Ni 13 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> [x]
+Ni 2 2 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> [x]
+Ni 3 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> OOM 
+Ni 7 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> [x]
+Ni 8 2 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> [x]
+
+Starting Cu:
+I start them right away with 5/32, 12hrs 
+
+Cu 0 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs	-> OOM -> 2/125
+Cu -1 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM -> 2/125
+Cu 1 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM  -> 2/125
+Cu 10 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 11 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 12 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x] 
+Cu 13 2 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 14 3 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 15 2 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 16 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 17 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 18 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 19 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 20 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 2 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 21 2 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 22 3 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 23 2 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 24 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 25 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 26 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 27 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 28 1 State: FAILED (exit code 1)
+Cu 3 2 State: OUT_OF_MEMORY (exit code 0)  -> 2/125
+Cu 5 4 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 6 5 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM
+Cu 7 4 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 8 3 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+Cu 9 2 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
+
+
+
+
