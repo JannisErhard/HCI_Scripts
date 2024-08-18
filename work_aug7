@@ -36,6 +36,7 @@ Ti_4_0 -> OOM -> same -> OOT -> increase to 6 hrs [x]
 
 
 V:
+V_2_3 -> Failed -> 32/5 3hrs -> OOT -> 6hrs
  V_-1_6 -> OOM -> update mem -> OOM -> increase to 32 -> OOM -> increase to 50 -> OOM -> 2/125, increase time to 24 hrs -> Failed mismatch between mpirun in dice_run.py and --ntasks-per-node=2  in dice_run.sh -> fix mismatch -> Timeout -> increased to 48 hours -> OOM ->  24hrs + 2 nodes @ 125G each -> [x]
 V_0_3 -> OOT -> 6 hrs -> OOM -> 5/32 -> [x]
 V_1_4 -> OOM -> upadte MEM -> OOT -> increase time [x]  
@@ -90,13 +91,13 @@ Starting Co
 -> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
 -> started them all
 
-Co 0 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> OOM -> increased to 50 GB -> OOT 
-Co -1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT
-Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT 
-Co 2 3 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs and more memory -> OOT
-Co 6 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increase memeory   -> OOT
-Co 9 0 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increase runtime to 6hrs -> OOT
-Co 12 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM 
+Co -1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 24 hrs 
+Co 0 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> OOM -> increased to 50 GB -> OOT -> increase time to 24 hrs 
+Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 12hrs 
+Co 2 3 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs and more memory -> OOT -> increased to 12 hrs 
+Co 6 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increase memeory to 32@5  -> OOT -> 12hrs 
+Co 9 0 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increase runtime to 6hrs -> OOT -> increased to 12 hrs
+Co 12 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> 32GB@5  
 Co 25 0 State: FAILED (exit code 1) -> restart
 Co 26 1 State: FAILED (exit code 1)
 Co 16 1 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> [x]
@@ -105,10 +106,10 @@ Co 7 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> [x]
 
 Starting Ni 
 -> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
--> started them all
+-> started them all	
 
 Ni 0 2 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs  -> OOT -> increased time to 12 hrs  -> OOT -> increased to 24 hrs 
-Ni 3 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> OOM ->  
+Ni 3 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> OOM -> 2/125  
 Ni 1 1 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> OOT -increased time to 12 hrs -> [x]
 Ni 10 0 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> [x]
 Ni -1 1 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time to 6 hrs -> [x]
@@ -120,7 +121,7 @@ Ni 8 2 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time t
 Starting Cu:
 I start them right away with 5/32, 12hrs 
 
-Cu 0 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs	-> OOM -> 2/125
+Cu 0 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs	-> OOM -> 2/125 
 Cu -1 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM -> 2/125
 Cu 1 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM  -> 2/125
 Cu 3 2 State: OUT_OF_MEMORY (exit code 0)  -> 2/125
