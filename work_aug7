@@ -156,14 +156,14 @@ Cu 9 2 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
 
 Zn started with 32/5 + 24 hrs 
 Zn 0 0 State: OUT_OF_MEMORY (exit code 0)
-Zn 1 1 State: FAILED (exit code 1)
+Zn 1 1 State: FAILED (exit code 1) -> retsart
 Zn 11 1 State: COMPLETED (exit code 0)
-Zn 12 0 State: FAILED (exit code 1)
-Zn 13 1 State: FAILED (exit code 1)
-Zn 14 2 State: FAILED (exit code 1)
-Zn 15 3 State: FAILED (exit code 1)
+Zn 12 0 State: FAILED (exit code 1) -> restart 
+Zn 13 1 State: FAILED (exit code 1) -> restart
+Zn 14 2 State: FAILED (exit code 1) -> restart
+Zn 15 3 State: FAILED (exit code 1) -> restart
 Zn 2 0 State: OUT_OF_MEMORY (exit code 0)
-Zn 29 1 State: FAILED (exit code 1)
+Zn 29 1 State: FAILED (exit code 1) -> restart
 Zn 4 2 State: OUT_OF_MEMORY (exit code 0)
 Zn 5 3 State: OUT_OF_MEMORY (exit code 0)
 Zn 7 5 State: OUT_OF_MEMORY (exit code 0)
