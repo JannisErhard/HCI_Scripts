@@ -48,7 +48,7 @@ Starting Cr
 -> just change the number of processors and the memory in the make_dice_jobs script to 10 and 16 
 -> started them all
 
-Cr -1 5 -> OOM -> 5/32 -> OOT -> increase to 6 hrs -> OOM -> increased to 50 GB -> OOT -> 24 hrs -> OOT -> 48 hrs -> nothing -> 24hrs + 2 nodes @ 125G each -> OOT  -> increased time to 48hrs -> stuck for too ong, changed "wording" from 48 hrs too 2 days
+Cr -1 5 -> OOM -> 5/32 -> OOT -> increase to 6 hrs -> OOM -> increased to 50 GB -> OOT -> 24 hrs -> OOT -> 48 hrs -> nothing -> 24hrs + 2 nodes @ 125G each -> OOT  -> increased time to 48hrs -> stuck for too ong, changed "wording" from 48 hrs too 2 days -> still doesnt do anything but hanging about -> changed to 24 hours on 4 machines 
 Cr 0 6 -> OOM -> 5/32 -> OOM -> 5/50GB -> OOT -> increase to 12 hrs [x]
 Cr 3 3 -> OOM -> 5/32 -> OOT -> increase to 6 hrs [x]
 Cr 4 2 -> OOT -> 6hrs [x]
@@ -156,12 +156,20 @@ Cu 9 2 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
 
 Zn started with 32/5 + 24 hrs 
 Zn 0 0 State: OUT_OF_MEMORY (exit code 0)
+<<<<<<< HEAD
 n 1 1 State: FAILED (exit code 1) -> restart
 Zn 11 1 State: COMPLETED (exit code 0)
 Zn 12 0 State: FAILED (exit code 1) -> restart 
 Zn 13 1 State: FAILED (exit code 1) -> restart
 Zn 14 2 State: FAILED (exit code 1) -> restart
 Zn 15 3 State: FAILED (exit code 1) -> restart
+=======
+Zn 1 1 State: FAILED (exit code 1) -> retsart
+Zn 12 0 State: FAILED (exit code 1) -> restart -> [x] 
+Zn 13 1 State: FAILED (exit code 1) -> restart -> [x]
+Zn 14 2 State: FAILED (exit code 1) -> restart -> [x]
+Zn 15 3 State: FAILED (exit code 1) -> restart -> [x]
+>>>>>>> ba00a73155b58e7d5f9f2dfcfb2c523ec146f379
 Zn 2 0 State: OUT_OF_MEMORY (exit code 0)
 Zn 29 1 State: FAILED (exit code 1) -> restart
 Zn 4 2 State: OUT_OF_MEMORY (exit code 0)
