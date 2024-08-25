@@ -92,11 +92,11 @@ Starting Co
 -> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
 -> started them all
 
-Co 0 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> OOM -> increased to 50 GB -> OOT -> increase time to 24 hrs -> OOM -> 125GB@2
-Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 12hrs -> OOM -> 2 processes @ 125G each
-Co 6 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increase memeory to 32@5  -> OOT -> 12hrs -> Failed -> restarted 
+Co 0 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> OOM -> increased to 50 GB -> OOT -> increase time to 24 hrs -> OOM -> 125GB@2 -> Crash / ntask mismatch -> restart
+Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 12hrs -> OOM -> 2 processes @ 125G each -> OOT -> increase time to 24 hrs
 Co 9 0 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increase runtime to 6hrs -> OOT -> increased to 12 hrs -> OOT -> increased to 24 hrs
-Co 12 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> 32GB@5 -> OOT  -> increased to 24 hrs
+Co 12 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> 32GB@5 -> OOT  -> increased to 24 hrs -> Failed Seemingöy without reason -> restart
+Co 6 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increase memeory to 32@5  -> OOT -> 12hrs -> Failed -> restarted -> [x]
 Co -1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 24 hrs  -> [x]
 Co 2 3 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs and more memory -> OOT -> increased to 12 hrs -> [x]
 Co 25 0 State: FAILED (exit code 1) -> restart -> [x]
@@ -122,10 +122,10 @@ Ni 8 2 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> Timeout -> increased time t
 Starting Cu:
 I start them right away with 5/32, 12hrs 
 
-Cu 3 2 State: OUT_OF_MEMORY (exit code 0)  -> 2/125 -> OOM 
-Cu 0 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs	-> OOM -> 2/125 -> Failed -> restarted 
-Cu 1 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM  -> 2/125 -> Failed -> restarted 
-Cu 6 5 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM -> 2/125
+Cu 3 2 State: OUT_OF_MEMORY (exit code 0)  -> 2/125 -> OOM -> 2@125 ... (dont know what happened before)
+Cu 0 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs	-> OOM -> 2/125 -> Failed -> restarted -> [x] 
+Cu 1 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM  -> 2/125 -> Failed -> restarted -> [x]
+Cu 6 5 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM -> 2/125 -> [x]
 Cu -1 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> OOM -> 2/125 -> OOT -> increased time to 2 days -> [x]
 Cu 10 1 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
 Cu 11 0 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
@@ -154,9 +154,9 @@ Cu 9 2 State: TIMEOUT (exit code 0) -> increased time to 24 hrs -> [x]
 
 
 
-Zn started with 32/5 + 24 hrs 
-Zn 5 3 State: OUT_OF_MEMORY (exit code 0) -> 122GB@2 processes 
-Zn 7 5 State: OUT_OF_MEMORY (exit code 0) -> 122GB@2 processes 
+Zn [x] started with 32/5 + 24 hrs 
+Zn 5 3 State: OUT_OF_MEMORY (exit code 0) -> 122GB@2 processes -> [x] 
+Zn 7 5 State: OUT_OF_MEMORY (exit code 0) -> 122GB@2 processes -> [x] 
 Zn 0 0 State: OUT_OF_MEMORY (exit code 0) -> 122GB@2 processes -> [x] 
 Zn 2 0 State: OUT_OF_MEMORY (exit code 0) -> 122GB@2 processes -> [x] 
 Zn 4 2 State: OUT_OF_MEMORY (exit code 0) -> 122GB@2 processes -> [x] 
@@ -167,23 +167,58 @@ Zn 14 2 State: FAILED (exit code 1) -> restart -> [x]
 Zn 15 3 State: FAILED (exit code 1) -> restart -> [x]
 
 Ga started with 32/5 + 24 hrs
-Ga 3 0 State: FAILED (exit code 1) -> restarted -> Failed 
+Ga 3 0 State: FAILED (exit code 1) -> restarted -> Failed  -> again, reason completely unclear 
 
 Ge [x] started with 32/5 + 24 hrs
 -> done
 
 As started with 32/5 + 24 hrs
-As -1 2 State: FAILED (exit code 1) -> restarted
-As 13 2 State: FAILED (exit code 1) -> restarted
-As 12 3 State: FAILED (exit code 1) -> restarted
-As 18 3 State: FAILED (exit code 1) -> restarted
-As 32 1 State: FAILED (exit code 1) -> restarted
+As 13 2 State: FAILED (exit code 1) -> restarted -> Failed -> restarted 
+As 18 3 State: FAILED (exit code 1) -> restarted -> Failed -> restarted  
+As 32 1 State: FAILED (exit code 1) -> restarted -> Failed -> restarted  
+As 12 3 State: FAILED (exit code 1) -> restarted -> [x]
+As -1 2 State: FAILED (exit code 1) -> restarted -> [x]
 
 Se started with 32/5 + 24 hrs  
-Se 16 0 State: FAILED (exit code 1) -> restarted
-Se 19 3 State: FAILED (exit code 1) -> restarted
-Se 23 1 State: FAILED (exit code 1) -> restarted
+Se 16 0 State: FAILED (exit code 1) -> restarted -> Failed -> restarted 
+Se 19 3 State: FAILED (exit code 1) -> restarted -> [x]
+Se 23 1 State: FAILED (exit code 1) -> restarted -> [x]
 
 Br started with 32/5 + 24 hrs
+Br -1 0 State: OUT_OF_MEMORY (exit code 0)
+Br 2 3 State: OUT_OF_MEMORY (exit code 0)
+Br 0 1 State: FAILED (exit code 1)  -> restarted
+Br 1 2 State: FAILED (exit code 1)  -> restarted
+Br 16 1 State: FAILED (exit code 1) -> restarted
+Br 17 0 State: FAILED (exit code 1) -> restarted
+Br 18 1 State: FAILED (exit code 1) -> restarted
+Br 21 2 State: FAILED (exit code 1) -> restarted
+Br 22 1 State: FAILED (exit code 1) -> restarted
+Br 23 0 State: FAILED (exit code 1) -> restarted
+Br 25 0 State: FAILED (exit code 1) -> restarted
+Br 26 1 State: FAILED (exit code 1) -> restarted
+Br 30 1 State: FAILED (exit code 1) -> restarted
+Br 34 1 State: FAILED (exit code 1) -> restarted
+Br 5 0 State: FAILED (exit code 1)  -> restarted
+Br 7 0 State: FAILED (exit code 1)  -> restarted
+
 
 Kr  started with 32/5 + 24 hrs
+Kr 7 1 State: OUT_OF_MEMORY (exit code 0)
+Kr 3 3 State: OUT_OF_MEMORY (exit code 0)
+Kr -1 1 State: FAILED (exit code 1) -> restarted 
+Kr 1 1 State: FAILED (exit code 1)  -> restarted 
+Kr 11 3 State: FAILED (exit code 1) -> restarted 
+Kr 13 5 State: FAILED (exit code 1) -> restarted 
+Kr 15 3 State: FAILED (exit code 1) -> restarted 
+Kr 19 1 State: FAILED (exit code 1) -> restarted 
+Kr 21 3 State: FAILED (exit code 1) -> restarted 
+Kr 22 2 State: FAILED (exit code 1) -> restarted 
+Kr 24 0 State: FAILED (exit code 1) -> restarted 
+Kr 30 2 State: FAILED (exit code 1) -> restarted 
+Kr 33 1 State: FAILED (exit code 1) -> restarted 
+Kr 35 1 State: FAILED (exit code 1) -> restarted 
+Kr 6 0 State: FAILED (exit code 1)  -> restarted 
+Kr 8 0 State: FAILED (exit code 1)  -> restarted 
+
+
