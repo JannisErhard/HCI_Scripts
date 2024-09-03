@@ -92,8 +92,8 @@ Starting Co
 -> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
 -> started them all
 
-Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 12hrs -> OOM -> 2 processes @ 125G each -> OOT -> increase time to 24 hrs -> Node Fail -> restart -> OOT -> restart with 48hrs 
-Co 9 0 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increase runtime to 6hrs -> OOT -> increased to 12 hrs -> OOT -> increased to 24 hrs -> Failed -> restart
+Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 12hrs -> OOM -> 2 processes @ 125G each -> OOT -> increase time to 24 hrs -> Node Fail -> restart -> OOT -> restart with 48hrs -> OOT -> restart with 48 hrs 
+Co 9 0 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increase runtime to 6hrs -> OOT -> increased to 12 hrs -> OOT -> increased to 24 hrs -> Failed -> restart -> [x]
 Co 12 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> 32GB@5 -> OOT  -> increased to 24 hrs -> Failed Seemingöy without reason -> restart -> Failed -> restart -> [x]
 Co 0 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> OOM -> increased to 50 GB -> OOT -> increase time to 24 hrs -> OOM -> 125GB@2 -> Crash / ntask mismatch -> restart -> Node Fail -> restart -> [x]
 Co 6 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increase memeory to 32@5  -> OOT -> 12hrs -> Failed -> restarted -> [x]
@@ -183,10 +183,10 @@ Se 16 0 State: FAILED (exit code 1) -> restarted -> Failed -> restarted [x]
 Se 19 3 State: FAILED (exit code 1) -> restarted -> [x]
 Se 23 1 State: FAILED (exit code 1) -> restarted -> [x]
 
-Br started with 32/5 + 24 hrs
-Br -1 0 State: OUT_OF_MEMORY (exit code 0)-> 122 GB @ 2 processes on 1 node 
-Br 2 3 State: OUT_OF_MEMORY (exit code 0)-> 122 GB @ 2 processes on 1 node 
-Br 5 0 State: FAILED (exit code 1)  -> restarted -> OOM -> 122 GB @ 2 processes on 1 node 
+Br [x] started with 32/5 + 24 hrs
+Br 5 0 State: FAILED (exit code 1)  -> restarted -> OOM -> 122 GB @ 2 processes on 1 node -> [x] 
+Br -1 0 State: OUT_OF_MEMORY (exit code 0)-> 122 GB @ 2 processes on 1 node -> [x]
+Br 2 3 State: OUT_OF_MEMORY (exit code 0)-> 122 GB @ 2 processes on 1 node -> [x]
 Br 0 1 State: FAILED (exit code 1)  -> restarted -> [x]
 Br 1 2 State: FAILED (exit code 1)  -> restarted -> [x]
 Br 16 1 State: FAILED (exit code 1) -> restarted -> [x]
@@ -202,9 +202,9 @@ Br 7 0 State: FAILED (exit code 1)  -> restarted -> [x]
 
 
 Kr  started with 32/5 + 24 hrs
-Kr 7 1 State: OUT_OF_MEMORY (exit code 0) -> 122 GB @ 2 processes on 1 node 
-Kr 3 3 State: OUT_OF_MEMORY (exit code 0) -> 122 GB @ 2 processes on 1 node 
-Kr 6 0 State: FAILED (exit code 1)  -> restarted -> Node Fail -> restarted  -> OOM -> 122 GB @ 2 processes on 1 node 
+Kr 7 1 State: OUT_OF_MEMORY (exit code 0) -> 122 GB @ 2 processes on 1 node  -> [x]
+Kr 3 3 State: OUT_OF_MEMORY (exit code 0) -> 122 GB @ 2 processes on 1 node -> [x]
+Kr 6 0 State: FAILED (exit code 1)  -> restarted -> Node Fail -> restarted  -> OOM -> 122 GB @ 2 processes on 1 node -> [x]
 Kr -1 1 State: FAILED (exit code 1) -> restarted -> [x] 
 Kr 1 1 State: FAILED (exit code 1)  -> restarted -> [x] 
 Kr 11 3 State: FAILED (exit code 1) -> restarted -> [x] 
