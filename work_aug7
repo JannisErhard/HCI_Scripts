@@ -76,8 +76,8 @@ Starting Fe
 -> started them all
 
 Fe [x]
+Fe -1 3 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> increased to 48 hrs -> fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram -> wrongfull completion message, error unclear -> 42 hrs, 1 machine, 4 processes, 62GB ram per process 
 Fe 0 4 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> 12 hrs -> Fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram // 50GB@5@1 at 24hrs -> OOM -> ... stuck/ input error -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> [x]
-Fe -1 3 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> increased to 48 hrs -> fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram -> [x]
 Fe 2 4 State: FAILED (exit code 1) -> restart -> [x]
 Fe 10 2 State: FAILED (exit code 1) -> restart -> [x]
 Fe 11 3 State: OUT_OF_MEMORY (exit code 0)  ->  5/32 -> OOT -> increased to 6 hrs [x]
