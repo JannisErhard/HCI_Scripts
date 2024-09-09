@@ -76,7 +76,7 @@ Starting Fe
 -> started them all
 
 Fe [x]
-Fe -1 3 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> increased to 48 hrs -> fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram -> wrongfull completion message, error unclear -> 42 hrs, 1 machine, 4 processes, 62GB ram per process 
+Fe -1 3 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> increased to 48 hrs -> fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram -> wrongfull completion message, error unclear -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> OOM ->   48 hrs @ 4 machines eith one process per machine and 125 GB ram
 Fe 0 4 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> 12 hrs -> Fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram // 50GB@5@1 at 24hrs -> OOM -> ... stuck/ input error -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> [x]
 Fe 2 4 State: FAILED (exit code 1) -> restart -> [x]
 Fe 10 2 State: FAILED (exit code 1) -> restart -> [x]
@@ -218,4 +218,35 @@ Kr 30 2 State: FAILED (exit code 1) -> restarted -> [x]
 Kr 33 1 State: FAILED (exit code 1) -> restarted -> [x] 
 Kr 35 1 State: FAILED (exit code 1) -> restarted -> [x] 
 Kr 8 0 State: FAILED (exit code 1)  -> restarted -> [x] 
+
+47K	apost3d.py
+295G	As
+47K	aux_file.py
+278G	Br
+8.8G	Ca
+352G	Co
+36K	compile.py
+188G	Cr
+303G	Cu
+36K	dice_template_noPT.py
+357G	Fe
+215G	Ga
+232G	Ge
+75G	hci
+7.9G	K
+277G	Kr
+36K	make_and_run_most.sh
+36K	make_dice_jobs.py
+473G	Mn
+36K	multiplicities.pkl
+289G	Ni
+36K	nohup.out
+24K	oneliners.sh
+51K	__pycache__
+36K	run_dice.sh
+154G	Sc
+245G	Se
+170G	Ti
+212G	V
+361G	Zn
 
