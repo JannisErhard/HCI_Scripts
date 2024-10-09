@@ -60,7 +60,7 @@ Starting Mn
 -> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
 -> started them all
 
-Mn -1 4 State: OUT_OF_MEMORY (exit code 0)->  5/32 -> OOM -> increased to 50GB -> OOT -> increase to 12 hrs -> OOT -> 24hrs + 2 nodes @ 125G each -> OOM -> incrase to 4 nodes -> OOM -> 187@4 nodes -> OOT  -> increased time to 4 days -> is not happening -> 42 hrs, 1 machine, 4 processes, 62GB ram per process 
+Mn -1 4 State: OUT_OF_MEMORY (exit code 0)->  5/32 -> OOM -> increased to 50GB -> OOT -> increase to 12 hrs -> OOT -> 24hrs + 2 nodes @ 125G each -> OOM -> incrase to 4 nodes -> OOM -> 187@4 nodes -> OOT  -> increased time to 4 days -> is not happening -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> OOM -> 48 hrs @ 4 machines eith one process per machine and 125 GB ram
 Mn 0 5 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 5/50GB + 12hrs -> OOT -> 24hrs + 2 nodes @ 125G each -> OOT -> increase to 48 hrs -> [x]
 Mn 17 2 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOT -> increased to 12 hrs -> OOT -> increase to 24 hrs -> OOT -> increased to 48 hrs -> [x]
 Mn 7 0 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increased 5/32 -> OOT -> increase to 12 hrs  -> Failed -> OOT -> 24 hrs -> [x]
@@ -76,7 +76,7 @@ Starting Fe
 -> started them all
 
 Fe [x]
-Fe -1 3 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> increased to 48 hrs -> fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram -> wrongfull completion message, error unclear -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> OOM ->   48 hrs @ 4 machines eith one process per machine and 125 GB ram
+Fe -1 3 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> increased to 48 hrs -> fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram -> wrongfull completion message, error unclear -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> OOM ->   48 hrs @ 4 machines eith one process per machine and 125 GB ram -> [x]
 Fe 0 4 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 50GB -> OOT -> 12 hrs -> Fail -> 24 hrs @ 4 machines eith one process per machine and 125 GB ram // 50GB@5@1 at 24hrs -> OOM -> ... stuck/ input error -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> [x]
 Fe 2 4 State: FAILED (exit code 1) -> restart -> [x]
 Fe 10 2 State: FAILED (exit code 1) -> restart -> [x]
@@ -92,7 +92,7 @@ Starting Co
 -> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
 -> started them all
 
-Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 12hrs -> OOM -> 2 processes @ 125G each -> OOT -> increase time to 24 hrs -> Node Fail -> restart -> OOT -> restart with 48hrs -> OOT -> restart with 48 hrs -> OOT restart with 96 hrs -> grew impatient -> 42 hrs, 1 machine, 4 processes, 62GB ram per process 
+Co 1 2 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increased to 6 hrs -> OOT -> increased to 12hrs -> OOM -> 2 processes @ 125G each -> OOT -> increase time to 24 hrs -> Node Fail -> restart -> OOT -> restart with 48hrs -> OOT -> restart with 48 hrs -> OOT restart with 96 hrs -> grew impatient -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> boost::archive::archive_exception
 Co 9 0 State: OUT_OF_MEMORY (exit code 0)-> 5/32 -> OOT -> increase runtime to 6hrs -> OOT -> increased to 12 hrs -> OOT -> increased to 24 hrs -> Failed -> restart -> [x]
 Co 12 3 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> 32GB@5 -> OOT  -> increased to 24 hrs -> Failed Seemingöy without reason -> restart -> Failed -> restart -> [x]
 Co 0 3 State: OUT_OF_MEMORY (exit code 0) -> 5/32 -> OOM -> increased to 50 GB -> OOT -> increase time to 24 hrs -> OOM -> 125GB@2 -> Crash / ntask mismatch -> restart -> Node Fail -> restart -> [x]
@@ -202,6 +202,7 @@ Br 7 0 State: FAILED (exit code 1)  -> restarted -> [x]
 
 
 Kr  started with 32/5 + 24 hrs
+Kr 4 3 -> somehow didnt write its npz file
 Kr 7 1 State: OUT_OF_MEMORY (exit code 0) -> 122 GB @ 2 processes on 1 node  -> [x]
 Kr 3 3 State: OUT_OF_MEMORY (exit code 0) -> 122 GB @ 2 processes on 1 node -> [x]
 Kr 6 0 State: FAILED (exit code 1)  -> restarted -> Node Fail -> restarted  -> OOM -> 122 GB @ 2 processes on 1 node -> [x]
