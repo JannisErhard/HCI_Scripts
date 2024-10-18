@@ -220,34 +220,3 @@ Kr 33 1 State: FAILED (exit code 1) -> restarted -> [x]
 Kr 35 1 State: FAILED (exit code 1) -> restarted -> [x] 
 Kr 8 0 State: FAILED (exit code 1)  -> restarted -> [x] 
 
-47K	apost3d.py
-295G	As
-47K	aux_file.py
-278G	Br
-8.8G	Ca
-352G	Co
-36K	compile.py
-188G	Cr
-303G	Cu
-36K	dice_template_noPT.py
-357G	Fe
-215G	Ga
-232G	Ge
-75G	hci
-7.9G	K
-277G	Kr
-36K	make_and_run_most.sh
-36K	make_dice_jobs.py
-473G	Mn
-36K	multiplicities.pkl
-289G	Ni
-36K	nohup.out
-24K	oneliners.sh
-51K	__pycache__
-36K	run_dice.sh
-154G	Sc
-245G	Se
-170G	Ti
-212G	V
-361G	Zn
-
