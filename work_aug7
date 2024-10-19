@@ -60,7 +60,7 @@ Starting Mn
 -> just change the number of processors and the memory in the make_dice_jobs script to 10 tasks and 16 G 
 -> started them all
 
-Mn -1 4 State: OUT_OF_MEMORY (exit code 0)->  5/32 -> OOM -> increased to 50GB -> OOT -> increase to 12 hrs -> OOT -> 24hrs + 2 nodes @ 125G each -> OOM -> incrase to 4 nodes -> OOM -> 187@4 nodes -> OOT  -> increased time to 4 days -> is not happening -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> OOM -> 48 hrs @ 4 machines eith one process per machine and 125 GB ram
+Mn -1 4 State: OUT_OF_MEMORY (exit code 0)->  5/32 -> OOM -> increased to 50GB -> OOT -> increase to 12 hrs -> OOT -> 24hrs + 2 nodes @ 125G each -> OOM -> incrase to 4 nodes -> OOM -> 187@4 nodes -> OOT  -> increased time to 4 days -> is not happening -> 42 hrs, 1 machine, 4 processes, 62GB ram per process -> OOM -> 48 hrs @ 4 machines eith one process per machine and 125 GB ram -> OOT -> 4 days @ 4 machines eith one process per machine and 125 GB ram
 Mn 0 5 State: OUT_OF_MEMORY (exit code 0) ->  5/32 -> OOM -> 5/50GB + 12hrs -> OOT -> 24hrs + 2 nodes @ 125G each -> OOT -> increase to 48 hrs -> [x]
 Mn 17 2 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOT -> increased to 12 hrs -> OOT -> increase to 24 hrs -> OOT -> increased to 48 hrs -> [x]
 Mn 7 0 State: TIMEOUT (exit code 0) -> increased to 6 hrs -> OOM -> increased 5/32 -> OOT -> increase to 12 hrs  -> Failed -> OOT -> 24 hrs -> [x]
